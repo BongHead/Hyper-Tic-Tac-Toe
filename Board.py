@@ -42,3 +42,32 @@ def init_board(frame:tk.Frame):
                     sticky="nsew"
                 )
 '''
+
+class Board(tk.Tk):
+    def __init__(self) -> None:
+        super.__init__()
+        self.title("Title")
+
+    def getWin()->tuple:#self?
+        return ([0,1,2],
+                [3,4,5],
+                [6,7,8],
+                [0,3,6],
+                [1,4,7],
+                [2,5,8],
+                [0,4,8],
+                [2,4,6]) #winCons = Board.getWin()
+    
+    def init_board(frame:tk.Frame):
+        pass
+
+        
+class NestedBoard(Board):
+    def __init__(self) -> None:
+        pass
+    board = Board()    
+
+class NestedNestedBoard(NestedBoard):
+    def __init__(self) -> None:
+        pass
+    board = NestedBoard()
