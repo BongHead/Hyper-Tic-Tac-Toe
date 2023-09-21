@@ -1,0 +1,14 @@
+sub-board  -> biggest one -->>>
+hyper ttt: (x,y)->next turn-> (y,any)
+edge: (1,1) , (2,2), (3,3), (4,4)... (not 5,5)... (9,9)
+
+
+
+
+(x,x,x) except (5,5,5) :: (any,x,x) ->  (x,any,any)
+
+(x,y,z) -> next turn -> (x,z,any)
+
+
+
+
