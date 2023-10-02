@@ -1,6 +1,4 @@
-from tkinter import *
-from tkinter.ttk import *
-from tkinter import font
+from pygame import *
 from enum import Enum
 import numpy as np
 
@@ -10,11 +8,10 @@ class TileStates(Enum):
     O = 2
     WON = 3
 
-class Board(Tk):
-    def __init__(self) -> None:
-        super.__init__()
-        self.title("Title")
 
+class Board():
+    def __init__(self) -> None:
+        pass
     def getWin()->tuple:#self?
         return ([0,1,2],
                 [3,4,5],
@@ -45,17 +42,3 @@ class Board(Tk):
             if result:
                 return result
         return Board.checkDiagonals(board)
-    
-    def init_board(frame:Frame):
-        pass
-
-        
-class NestedBoard(Board):
-    def __init__(self) -> None:
-        pass
-      
-
-class NestedNestedBoard(NestedBoard):
-    def __init__(self) -> None:
-        pass
-    
