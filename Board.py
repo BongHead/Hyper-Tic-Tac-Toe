@@ -1,49 +1,16 @@
-import tkinter as tk
+from tkinter import *
+from tkinter.ttk import *
 from tkinter import font
-'''
-class TicTacToeBoard(tk.Tk):
-    def __init__(self) -> None:
-        super().__init__()
-        self.title("Insert Name")
-        self._cells = {}
+from enum import Enum
+import numpy as np
 
-    def _create_board_display(self):
-        display_frame = tk.Frame(master=self)
-        display_frame.pack(fill=tk.X)
-        self.display = tk.Label(master=display_frame,text="Ready?",font=font.Font(size=28,weight="bold"))
-        self.display.pack()
+class TileStates(Enum):
+    BLANK = 0
+    X = 1
+    O = 2
+    WON = 3
 
-    def _create_board_grid(self):
-        grid_frame = tk.Frame(master=self)
-        grid_frame.pack()
-        for row in range(3):
-'''
-'''
-def init_board(frame:tk.Frame):
-    for row in range(3):
-        frame.rowconfigure(row, weight=1, minsize=50)
-        frame.columnconfigure(row, weight=1, minsize=75)
-        for col in range(3):
-                button = tk.Button(
-                    master=frame,
-                    text="",
-                    font=font.Font(size=36, weight="bold"),
-                    fg="black",
-                    width=3,
-                    height=2,
-                    highlightbackground="lightblue",
-                )
-                frame.grid._cells[button] = (row, col)
-                button.grid(
-                    row=row,
-                    column=col,
-                    padx=5,
-                    pady=5,
-                    sticky="nsew"
-                )
-'''
-
-class Board(tk.Tk):
+class Board(Tk):
     def __init__(self) -> None:
         super.__init__()
         self.title("Title")
@@ -58,16 +25,37 @@ class Board(tk.Tk):
                 [0,4,8],
                 [2,4,6]) #winCons = Board.getWin()
     
-    def init_board(frame:tk.Frame):
+    def checkRows(board:list):
+        for row in board:
+            if len(set(row)) == 1:
+                return row[0]
+        return 0
+    
+    def checkDiagonals(board:list): 
+        if len(set([board[i][i] for i in range(len(board))])) == 1:
+            return board[0][0]
+        if len(set([board[i][len(board)-i-1] for i in range(len(board))])) == 1:
+            return board[0][len(board)-1]
+        return 0
+    
+    def checkWin(board:list):
+    #transposition to check rows, then columns
+        for newBoard in [board, np.transpose(board)]:
+            result = Board.checkRows(newBoard)
+            if result:
+                return result
+        return Board.checkDiagonals(board)
+    
+    def init_board(frame:Frame):
         pass
 
         
 class NestedBoard(Board):
     def __init__(self) -> None:
         pass
-    board = Board()    
+      
 
 class NestedNestedBoard(NestedBoard):
     def __init__(self) -> None:
         pass
-    board = NestedBoard()
+    
